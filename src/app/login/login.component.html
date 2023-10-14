@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="w-75 mx-auto my-4">
+    <h4>log in now :</h4>
+    <form  (ngSubmit)="handleLogin(loginForm)" [formGroup]="loginForm">
+      <label for="email">email :</label>
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="email"
+        formControlName="email"
+      />
+      <label for="password">password :</label>
+      <input
+        type="password"
+        class="form-control mb-2"
+        id="password"
+        formControlName="password"
+      />
+      <button
+      [disabled]="loginForm.invalid"
+      type="submit"
+      class="btn btn-success ms-auto d-block w-auto text-capitalize"
+    >
+      <i *ngIf="isloading" class="fas fa-spinner fa-spin"></i>
+      <span *ngIf="!isloading">Login</span>
+    </button>
+    </form>
+  </div>
+</div>
