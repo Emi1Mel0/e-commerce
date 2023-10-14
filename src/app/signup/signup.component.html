@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="w-75 mx-auto my-4">
+    <h4>sign up now :</h4>
+
+    <div *ngIf="apiError" class="alert alert-danger "> {{apiError}} </div>
+    <form (ngSubmit)="handleSignup(signupForm)" [formGroup]="signupForm">
+      <label for="name">name :</label>
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="
+          signupForm.get('name')?.errors && signupForm.get('name')?.touched
+        "
+        class="alert alert-danger"
+      >
+        <h3 *ngIf="signupForm.get('name')?.getError('minLength')" class="m-0">
+          minLenght is 3
+        </h3>
+        <p *ngIf="signupForm.get('name')?.getError('maxLength')" class="m-0">
+          maxLenght is 10
+        </p>
+        <p *ngIf="signupForm.get('name')?.getError('required')" class="m-0">
+          name is required
+        </p>
+      </div>
+      <label for="email">email :</label>
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="
+          signupForm.get('email')?.errors && signupForm.get('email')?.touched
+        "
+        class="alert alert-danger"
+      >
+        <p *ngIf="signupForm.get('email')?.getError('email')" class="m-0">
+          email is invalid
+        </p>
+        <p *ngIf="signupForm.get('email')?.getError('required')" class="m-0">
+          email is required
+        </p>
+      </div>
+      <label for="password">password :</label>
+      <input
+        type="password"
+        class="form-control mb-2"
+        id="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="
+          signupForm.get('password')?.errors &&
+          signupForm.get('password')?.touched
+        "
+        class="alert alert-danger"
+      >
+        <p *ngIf="signupForm.get('password')?.getError('pattern')" class="m-0">
+          password must start with capital <br />
+          minLength is 8 and maxLenght is 14
+        </p>
+        <p *ngIf="signupForm.get('password')?.getError('required')" class="m-0">
+          password is required
+        </p>
+      </div>
+      <label for="rePassword">rePassword :</label>
+      <input
+        type="password"
+        class="form-control mb-2"
+        id="rePassword"
+        formControlName="rePassword"
+      />
+      <div
+        *ngIf="
+          signupForm.get('rePassword')?.errors &&
+          signupForm.get('rePassword')?.touched
+        "
+        class="alert alert-danger"
+      >
+        <p
+          *ngIf="signupForm.get('rePassword')?.getError('pattern')"
+          class="m-0"
+        >
+          rePassword must start with capital <br />
+          minLength is 8 and maxLenght is 14
+        </p>
+        <p
+          *ngIf="signupForm.get('rePassword')?.getError('required')"
+          class="m-0"
+        >
+          rePassword is required
+        </p>
+      </div>
+      <label for="phone">phone :</label>
+      <input
+        type="tel"
+        class="form-control mb-2"
+        id="phone"
+        formControlName="phone"
+      />
+      <div
+        *ngIf="
+          signupForm.get('phone')?.errors && signupForm.get('phone')?.touched
+        "
+        class="alert alert-danger"
+      >
+        <p *ngIf="signupForm.get('phone')?.getError('pattern')" class="m-0">
+          Enter a valid egyptian phone
+        </p>
+        <p *ngIf="signupForm.get('phone')?.getError('required')" class="m-0">
+          phone is required
+        </p>
+      </div>
+      <button
+        [disabled]="signupForm.invalid"
+        type="submit"
+        class="btn btn-success ms-auto d-block w-auto text-capitalize"
+      >
+        <i *ngIf="isloading" class="fas fa-spinner fa-spin"></i>
+        <span *ngIf="!isloading">sign up</span>
+      </button>
+    </form>
+  </div>
+</div>
